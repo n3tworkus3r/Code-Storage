@@ -1,5 +1,6 @@
 /*
-	Преобразовать двоичное в десятичное и наоборот при помощи bitset
+	#Convert binary to decimal and vice versa using bitset
+	#Преобразовать двоичное в десятичное и наоборот при помощи bitset
 */
 
 #include <iostream>
