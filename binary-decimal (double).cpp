@@ -38,7 +38,7 @@ void binary_to_decimal(string bin) {
 int main() {
 	setlocale(LC_ALL, "");	
 	string binary;
-	cout << "������� �������� �����:\t", cin >> binary;
+	cout << "Enter a binary number:\t", cin >> binary;
 	binary_to_decimal(binary);
 	return 0;
 }
