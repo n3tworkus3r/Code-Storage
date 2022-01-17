@@ -1,5 +1,6 @@
 /*
-	Создать функцию для вычисления факториала числа
+    Create a function to calculate the factorial of a number
+	# РЎРѕР·РґР°С‚СЊ С„СѓРЅРєС†РёСЋ РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёСЏ С„Р°РєС‚РѕСЂРёР°Р»Р° С‡РёСЃР»Р°
 */
 
 #include <iostream>
@@ -7,21 +8,16 @@
 using namespace std;
 
 int factorial(int n) {
-	int f; // Переменная для факториала
-	if (n == 0) // Факториал 0 равен 1
-		f = 1;
-	else
-		f = n * factorial(n - 1); // В противном случае, высчитываем по формуле произведение в обратном порядке
+	int f;
+	(n == 0) ? f = 1 :	f = n * factorial(n - 1);
 	return f;
 }
 
 int main() {
 	setlocale(LC_ALL, "");
 	int a;
-	cout << "Введите число: ", cin >> a;
-
+	cout << "Enter a number: ", cin >> a;
 	cout << factorial(a) << endl;
-
 	return 0;
 }
 

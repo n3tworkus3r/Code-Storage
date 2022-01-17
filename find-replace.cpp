@@ -1,7 +1,11 @@
 /*
-	Считать тескт из файла.
-	Заменить в тексте слово на введённое из клавиатуры.
-	Если искомого слова нет, отобразить это в консоль. 
+	Read the text from a file.
+	Replace the word in the text with the one entered from the keyboard.
+	If the word you are looking for is not present, display it in the console. 
+	
+	# РЎС‡РёС‚Р°С‚СЊ С‚РµСЃРєС‚ РёР· С„Р°Р№Р»Р°.
+	# Р—Р°РјРµРЅРёС‚СЊ РІ С‚РµРєСЃС‚Рµ СЃР»РѕРІРѕ РЅР° РІРІРµРґС‘РЅРЅРѕРµ РёР· РєР»Р°РІРёР°С‚СѓСЂС‹.
+	# Р•СЃР»Рё РёСЃРєРѕРјРѕРіРѕ СЃР»РѕРІР° РЅРµС‚, РѕС‚РѕР±СЂР°Р·РёС‚СЊ СЌС‚Рѕ РІ РєРѕРЅСЃРѕР»СЊ. 
 */
 
 #include <iostream>
@@ -19,8 +23,8 @@ int main() {
 	string temp, s1, s2;
 	fstream f;
 	bool find = false;
-	cout << "Введите искомое слово: ", cin >> s1;
-	cout << "Введите слово, на которое нужно заменить: ", cin >> s2;
+	cout << "Type the word you are looking for: ", cin >> s1;
+	cout << "Enter the word you want to replace with: ", cin >> s2;
 
 	f.open(input_file_name, ios_base::in);
 
@@ -30,11 +34,11 @@ int main() {
 		if (index != -1) {
 			temp.replace(index, s1.length(),s2);
 			find = true;
-			cout << "Слово " << s1 << " заменено на " << s2 << endl;
+			cout << "Word " << s1 << "  changed to  " << s2 << endl;
 		}
 		my_vector.push_back(temp);
 	}
-	if (!find) cout << "Не найдено ни одного слова " << s1 << " в тексте" << endl;
+	if (!find) cout << "Not a single word was found " << s1 << "  in the text" << endl;
 	
 	f.close();
 

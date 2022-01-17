@@ -1,5 +1,6 @@
 /*
-	Вывести в консоль 4 типа флага для указанных с клавиатуры размерностей двумерного массива
+	Output to the console 4 types of flags for the specified from the keyboard dimensions of a two-dimensional array
+	# Р’С‹РІРµСЃС‚Рё РІ РєРѕРЅСЃРѕР»СЊ 4 С‚РёРїР° С„Р»Р°РіР° РґР»СЏ СѓРєР°Р·Р°РЅРЅС‹С… СЃ РєР»Р°РІРёР°С‚СѓСЂС‹ СЂР°Р·РјРµСЂРЅРѕСЃС‚РµР№ РґРІСѓРјРµСЂРЅРѕРіРѕ РјР°СЃСЃРёРІР°
 */ 
 
 #include <iostream>
@@ -7,7 +8,6 @@
 using namespace std;
 
 void output(int n, int m, int** array) {
-	// Выводим элементы массива
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
 			cout << array[i][j] << " ";
@@ -17,73 +17,61 @@ void output(int n, int m, int** array) {
 }
 
 void cross_flag(int n, int m, int** array) {
-	cout << endl << "Флаг 'Крест'" << endl;
-	// Заполняем матрицу
+	cout << endl << "'Cross' Flag" << endl;
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
-			array[i][j] = 0;     // Заполняем матрицу нулями
+			array[i][j] = 0;
 			if (i == j) 
-				array[i][j] = 1; // Условие принадлежности к главной диагонали
-			
+				array[i][j] = 1; // Condition of belonging to the main diagonal	
 			if (j == (n - 1) - i)
-				array[i][j] = 1; // Условие принадлежности к побочной диагонали	
+				array[i][j] = 1; // Condition of belonging to a side diagonal	
 		}
 	}
 }
 
 void plus_flag(int n, int m, int** array) {
-	cout << endl << "Флаг 'Плюс'" << endl;
-	// Заполняем матрицу
+	cout << endl << "'Plus' Flag" << endl;
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
-			array[i][j] = 0;     // Заполняем матрицу нулями
-			if (i == 2) {
-				array[i][j] = 1; // Условие принадлежности к 3 строке
-			}
-
-			if (j == 2) {
-				array[i][j] = 1; // Условие принадлежности к 3-му столбцу
-			}
+			array[i][j] = 0;
+			if (i == 2) 
+				array[i][j] = 1;
+			if (j == 2) 
+				array[i][j] = 1;
+			
 		}
 	}
 }
 
 void frame_flag(int n, int m, int** array) {
-	cout << endl << "Флаг 'Рамка'" << endl;
-	// Заполняем матрицу
+	cout << endl << "'Frame' Flag" << endl;
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
-			array[i][j] = 0;     // Заполняем матрицу нулями
-
-			if (i == 0) { // Условие принадлежности к первой строке
+			array[i][j] = 0;
+			if (i == 0) 
 				array[i][j] = 1;
-			}
-			if (j == 0) { // Условие принадлежности к первому столбцу
+			if (j == 0) 
 				array[i][j] = 1; 
-			}
-			if (i == n - 1) { // Условие принадлежности к последней строке
+			if (i == n - 1)
 				array[i][j] = 1;
-			}
-			if (j == m - 1) { // Условие принадлежности к последнему столбцу
+			if (j == m - 1) 
 				array[i][j] = 1;
-			}
+			
 		}
 	}
 }
 
 void chessboard_flag(int n, int m, int** array) {
-	cout << endl << "Флаг 'Шахматное поле'" << endl;
-	// Заполняем матрицу
+	cout << endl << "'Chessboard' Flag" << endl;
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
-			array[i][j] = 0;     // Заполняем матрицу нулями
-			if (i % 2 != 0 && j % 2 == 0) { // Если i нечётное и j чётное
+			array[i][j] = 0;
+			if (i % 2 != 0 && j % 2 == 0)  // If i is odd and j is even
 				array[i][j] = 1;
-			}
 
-			if (i % 2 == 0 && j % 2 != 0) { // Если i чётное и j нечётное
+			if (i % 2 == 0 && j % 2 != 0)  //  If i is even and j is odd
 				array[i][j] = 1;
-			}
+			
 		}
 	}
 }
@@ -91,8 +79,8 @@ void chessboard_flag(int n, int m, int** array) {
 int main() {
 	setlocale(LC_ALL, "");
 	int n, m, choice = 5;
-	cout << "Введите количество строк массива ", cin >> n;
-	cout << "Введите количество столбцов массива ", cin >> m;
+	cout << "Enter the number of rows of the array ", cin >> n;
+	cout << "Enter the number of columns of the array ", cin >> m;
 
 	int** array = new int* [n];
 
@@ -100,7 +88,7 @@ int main() {
 		array[i] = new int[m];
 	
 	/*
-	  Индексы строк и столбцов элементов матрицы:
+	  Rows and columns indices of matrix elements:
 
 		11 12 13 14 15
 		21 22 23 24 25
@@ -110,12 +98,12 @@ int main() {
 	*/
 	
 	do {
-		cout << "\n Выберите тип флага:";
-		cout << "\n 1) Крест";
-		cout << "\n 2) Плюс";
-		cout << "\n 3) Рамка";
-		cout << "\n 4) Шахматное поле";
-		cout << "\n 5) Выход\n";
+		cout << "\n Select the type of flag::";
+		cout << "\n 1) Cross";
+		cout << "\n 2) Plus";
+		cout << "\n 3) Frame";
+		cout << "\n 4) Chessboard";
+		cout << "\n 5) exit\n";
 		cin >> choice;
 
 		switch (choice) {
