@@ -1,5 +1,6 @@
 /*
-	Преобразовать строку в с двоичным числом в вещественное
+	Convert a string with a binary number to a real number
+	# РџСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ СЃС‚СЂРѕРєСѓ РІ СЃ РґРІРѕРёС‡РЅС‹Рј С‡РёСЃР»РѕРј РІ РІРµС‰РµСЃС‚РІРµРЅРЅРѕРµ
 */
 
 #include <iostream>
@@ -8,25 +9,24 @@ using namespace std;
 
 void binary_to_decimal(string bin) {
 
-	auto dot_index=bin.find_first_of('.', 0); // Находим индекс точки в строке
+	auto dot_index=bin.find_first_of('.', 0); // Find the index of the point in the line ## РќР°С…РѕРґРёРј РёРЅРґРµРєСЃ С‚РѕС‡РєРё РІ СЃС‚СЂРѕРєРµ
 	auto int_sum = 0;
 	auto i = 0;
 
 	while (bin.at(i) != '.') {
 		if (bin.at(i) =='1')
-			int_sum += pow(2, dot_index - i - 1); // Если находим единицу, умножаем её на 2 в степени её разряда
-		
+			int_sum += pow(2, dot_index - i - 1); // If we find one, multiply it by 2 to the power of its digit  ## Р•СЃР»Рё РЅР°С…РѕРґРёРј РµРґРёРЅРёС†Сѓ, СѓРјРЅРѕР¶Р°РµРј РµС‘ РЅР° 2 РІ СЃС‚РµРїРµРЅРё РµС‘ СЂР°Р·СЂСЏРґР°
 		i++;
 	}
 
-	i = dot_index;  // Переходим к индексу точки
-	i++;  // Переходим к элементу следующему за точкой
+	i = dot_index;  // Go to the point index  ## РџРµСЂРµС…РѕРґРёРј Рє РёРЅРґРµРєСЃСѓ С‚РѕС‡РєРё
+	i++;  // Go to the element following the point ## РџРµСЂРµС…РѕРґРёРј Рє СЌР»РµРјРµРЅС‚Сѓ СЃР»РµРґСѓСЋС‰РµРјСѓ Р·Р° С‚РѕС‡РєРѕР№
 	double frac_sum = 0.0;
 
 	while (i < bin.length()) {
 		if (bin.at(i) == '1') {
-			int degrees = 0 -(i - dot_index);  // Получаем отрицательную степень
-			frac_sum += pow(2,degrees); // Умножаем на 2 в степени разряда после запятой
+			int degrees = 0 -(i - dot_index);  // We get the negative degree ## РџРѕР»СѓС‡Р°РµРј РѕС‚СЂРёС†Р°С‚РµР»СЊРЅСѓСЋ СЃС‚РµРїРµРЅСЊ
+			frac_sum += pow(2,degrees); // Multiplied by 2 decimal places ## РЈРјРЅРѕР¶Р°РµРј РЅР° 2 РІ СЃС‚РµРїРµРЅРё СЂР°Р·СЂСЏРґР° РїРѕСЃР»Рµ Р·Р°РїСЏС‚РѕР№
 		}
 		i++;
 	}
@@ -38,7 +38,7 @@ void binary_to_decimal(string bin) {
 int main() {
 	setlocale(LC_ALL, "");	
 	string binary;
-	cout << "Введите двоичное число:\t", cin >> binary;
+	cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ:\t", cin >> binary;
 	binary_to_decimal(binary);
 	return 0;
 }
