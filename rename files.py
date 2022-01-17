@@ -25,3 +25,20 @@ for i in os.listdir(folder):
     print(index * 100 / len(item_list))
 
 ############################################
+
+####### УПОРЯДОЧЕННОЕ ПЕРЕИМЕНОВАНИЕ #######
+
+folder = "E:\\Media\\x\\PH"
+item_index = 1
+
+os.chdir(folder)
+
+#print(os.getcwd())
+
+
+for i in os.listdir(folder):
+    os.rename(i, str(item_index)+".jpg")
+    item_index+=1
+
+############################################
+
