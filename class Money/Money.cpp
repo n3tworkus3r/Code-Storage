@@ -1,4 +1,4 @@
-#include "Money.h" 
+#include "money.h" 
 
 pair<int, double> Money::calc_pence(double amount) {
 	double remainder = int(amount) % 12;

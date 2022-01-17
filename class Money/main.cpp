@@ -1,4 +1,4 @@
-﻿#include "Money.h"
+﻿#include "money.h"
 void Change_Sign(Money money) {
 	Money p = -money;
 	cout << "Change the sign:"; p.out();
