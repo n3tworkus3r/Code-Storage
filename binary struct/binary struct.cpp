@@ -1,36 +1,36 @@
-#include "Binary Struct.h"
+#include "binary struct.h"
 
-void display(const char* iname) { // Чтение  структуры из файла и вывод в консоль
-	fstream fin; // fin - поток ввода (для чтения структуры)
-	// Открытие файла для чтения в бинарном режиме
-	fin.open(iname, ios_base::in | ios_base::binary); // Функция fin.open открывает файл, имя которого указано в параметре fname и связывает его с потоком, который может быть идентифицирован для выполнения различных операций с файлом
+void display(const char* iname) { // Р§С‚РµРЅРёРµ  СЃС‚СЂСѓРєС‚СѓСЂС‹ РёР· С„Р°Р№Р»Р° Рё РІС‹РІРѕРґ РІ РєРѕРЅСЃРѕР»СЊ
+	fstream fin; // fin - РїРѕС‚РѕРє РІРІРѕРґР° (РґР»СЏ С‡С‚РµРЅРёСЏ СЃС‚СЂСѓРєС‚СѓСЂС‹)
+	// РћС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р° РґР»СЏ С‡С‚РµРЅРёСЏ РІ Р±РёРЅР°СЂРЅРѕРј СЂРµР¶РёРјРµ
+	fin.open(iname, ios_base::in | ios_base::binary); // Р¤СѓРЅРєС†РёСЏ fin.open РѕС‚РєСЂС‹РІР°РµС‚ С„Р°Р№Р», РёРјСЏ РєРѕС‚РѕСЂРѕРіРѕ СѓРєР°Р·Р°РЅРѕ РІ РїР°СЂР°РјРµС‚СЂРµ fname Рё СЃРІСЏР·С‹РІР°РµС‚ РµРіРѕ СЃ РїРѕС‚РѕРєРѕРј, РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ Р±С‹С‚СЊ РёРґРµРЅС‚РёС„РёС†РёСЂРѕРІР°РЅ РґР»СЏ РІС‹РїРѕР»РЅРµРЅРёСЏ СЂР°Р·Р»РёС‡РЅС‹С… РѕРїРµСЂР°С†РёР№ СЃ С„Р°Р№Р»РѕРј
 	if (!fin) {
-		cerr << "Ошибка открытия файла " << iname << "!" << endl; // iname - динамический массив
+		cerr << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° " << iname << "!" << endl; // iname - РґРёРЅР°РјРёС‡РµСЃРєРёР№ РјР°СЃСЃРёРІ
 		exit(EXIT_FAILURE);
 	}
 
 	/*
 	fin.open( const char * fname, const char * modeopen );
-	fname - Си-строка, содержащая имя файла, который необходимо открыть.
-	modeopen - Строка, содержащая режим доступа к файлу
+	fname - РЎРё-СЃС‚СЂРѕРєР°, СЃРѕРґРµСЂР¶Р°С‰Р°СЏ РёРјСЏ С„Р°Р№Р»Р°, РєРѕС‚РѕСЂС‹Р№ РЅРµРѕР±С…РѕРґРёРјРѕ РѕС‚РєСЂС‹С‚СЊ.
+	modeopen - РЎС‚СЂРѕРєР°, СЃРѕРґРµСЂР¶Р°С‰Р°СЏ СЂРµР¶РёРј РґРѕСЃС‚СѓРїР° Рє С„Р°Р№Р»Сѓ
 
-	Класс ios_base описывает параметры потока
+	РљР»Р°СЃСЃ ios_base РѕРїРёСЃС‹РІР°РµС‚ РїР°СЂР°РјРµС‚СЂС‹ РїРѕС‚РѕРєР°
 	*/
 
 	while (true) {
-		Student temp;  // Создаём временную переменную 
-		fin.read(reinterpret_cast<char*>(&temp), sizeof(Student)); // reinterpret_cast — операция приведения типов данных: reinterpret_cast<dataType>( value )
-		if (fin.eof()) break;  // Проверяет конец файла (EOF).        
-		print(temp); // Вывод структыру на консоль
-		// eof - выдаёт истину, если файл пуст, а если файл не пуст, то выдаётся ложь.
+		Student temp;  // РЎРѕР·РґР°С‘Рј РІСЂРµРјРµРЅРЅСѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ 
+		fin.read(reinterpret_cast<char*>(&temp), sizeof(Student)); // reinterpret_cast вЂ” РѕРїРµСЂР°С†РёСЏ РїСЂРёРІРµРґРµРЅРёСЏ С‚РёРїРѕРІ РґР°РЅРЅС‹С…: reinterpret_cast<dataType>( value )
+		if (fin.eof()) break;  // РџСЂРѕРІРµСЂСЏРµС‚ РєРѕРЅРµС† С„Р°Р№Р»Р° (EOF).        
+		print(temp); // Р’С‹РІРѕРґ СЃС‚СЂСѓРєС‚С‹СЂСѓ РЅР° РєРѕРЅСЃРѕР»СЊ
+		// eof - РІС‹РґР°С‘С‚ РёСЃС‚РёРЅСѓ, РµСЃР»Рё С„Р°Р№Р» РїСѓСЃС‚, Р° РµСЃР»Рё С„Р°Р№Р» РЅРµ РїСѓСЃС‚, С‚Рѕ РІС‹РґР°С‘С‚СЃСЏ Р»РѕР¶СЊ.
 	}
-	fin.close(); // Закрываем поток
+	fin.close(); // Р—Р°РєСЂС‹РІР°РµРј РїРѕС‚РѕРє
 }
 
 
 void print(const Student& s) {
-	cout << left  // left - выравнивание по левому краю
-		<< setw(18) << s.name // setw - задать ширину поля
+	cout << left  // left - РІС‹СЂР°РІРЅРёРІР°РЅРёРµ РїРѕ Р»РµРІРѕРјСѓ РєСЂР°СЋ
+		<< setw(18) << s.name // setw - Р·Р°РґР°С‚СЊ С€РёСЂРёРЅСѓ РїРѕР»СЏ
 		<< setw(21) << s.contract_number
 		<< setw(27) << s.group_number
 		<< setw(27) << s.mark;
@@ -40,29 +40,29 @@ void print(const Student& s) {
 
 void add_element(const char* iname) {
 
-	fstream f; // Поток ввода, для считывания входного файла
-	f.open(iname, ios_base::app | ios_base::out | ios_base::binary); // Параметр app класса ios_base устанавливает, что данные всегда записываются в конец файла,
-	if (!f) { // Если поток не запущен, выводим сообщение об ошибке
-		cerr << "Ошибка открытия файла " << iname << "!" << endl;
+	fstream f; // РџРѕС‚РѕРє РІРІРѕРґР°, РґР»СЏ СЃС‡РёС‚С‹РІР°РЅРёСЏ РІС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°
+	f.open(iname, ios_base::app | ios_base::out | ios_base::binary); // РџР°СЂР°РјРµС‚СЂ app РєР»Р°СЃСЃР° ios_base СѓСЃС‚Р°РЅР°РІР»РёРІР°РµС‚, С‡С‚Рѕ РґР°РЅРЅС‹Рµ РІСЃРµРіРґР° Р·Р°РїРёСЃС‹РІР°СЋС‚СЃСЏ РІ РєРѕРЅРµС† С„Р°Р№Р»Р°,
+	if (!f) { // Р•СЃР»Рё РїРѕС‚РѕРє РЅРµ Р·Р°РїСѓС‰РµРЅ, РІС‹РІРѕРґРёРј СЃРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ
+		cerr << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° " << iname << "!" << endl;
 		exit(EXIT_FAILURE);
 	}
 
-	fstream fout; // Поток вывода, для записи элемента в структуру
+	fstream fout; // РџРѕС‚РѕРє РІС‹РІРѕРґР°, РґР»СЏ Р·Р°РїРёСЃРё СЌР»РµРјРµРЅС‚Р° РІ СЃС‚СЂСѓРєС‚СѓСЂСѓ
 	fout.open(iname, ios_base::app | ios_base::binary);
 	if (!fout) {
-		cerr << "Ошибка открытия файла " << iname << "!" << endl;
+		cerr << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° " << iname << "!" << endl;
 		exit(EXIT_FAILURE);
 	}
 
-	Student temp; // Временная переменная temp, для записи туда введённых данных элемента структуры
+	Student temp; // Р’СЂРµРјРµРЅРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ temp, РґР»СЏ Р·Р°РїРёСЃРё С‚СѓРґР° РІРІРµРґС‘РЅРЅС‹С… РґР°РЅРЅС‹С… СЌР»РµРјРµРЅС‚Р° СЃС‚СЂСѓРєС‚СѓСЂС‹
 
-	f.read(reinterpret_cast<char*>(&temp), sizeof(Student)); // Читаем входной файл для записи в него нового элемента
+	f.read(reinterpret_cast<char*>(&temp), sizeof(Student)); // Р§РёС‚Р°РµРј РІС…РѕРґРЅРѕР№ С„Р°Р№Р» РґР»СЏ Р·Р°РїРёСЃРё РІ РЅРµРіРѕ РЅРѕРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 
-	temp = create_struct(); // В переменную помещаем вызов функции create_struct
+	temp = create_struct(); // Р’ РїРµСЂРµРјРµРЅРЅСѓСЋ РїРѕРјРµС‰Р°РµРј РІС‹Р·РѕРІ С„СѓРЅРєС†РёРё create_struct
 
-	fout.write(reinterpret_cast<char*>(&temp), sizeof(Student)); // Записываем новый элемент во входной файл в конец исходной структуры
+	fout.write(reinterpret_cast<char*>(&temp), sizeof(Student)); // Р—Р°РїРёСЃС‹РІР°РµРј РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚ РІРѕ РІС…РѕРґРЅРѕР№ С„Р°Р№Р» РІ РєРѕРЅРµС† РёСЃС…РѕРґРЅРѕР№ СЃС‚СЂСѓРєС‚СѓСЂС‹
 
-	// Закрываем потоки
+	// Р—Р°РєСЂС‹РІР°РµРј РїРѕС‚РѕРєРё
 	f.close(); 
 	fout.close();
 }
@@ -73,13 +73,13 @@ Student create_struct() {
 	cin.ignore();
 	Student temp = { "", 0, 0, 0 };
 	cout << endl;
-	cout << "\tФамилия -> ";
+	cout << "\tР¤Р°РјРёР»РёСЏ -> ";
 	cin.getline(temp.name, 30);
-	cout << "\tНомер договора -> ";
+	cout << "\tРќРѕРјРµСЂ РґРѕРіРѕРІРѕСЂР° -> ";
 	cin.getline(temp.contract_number, 30);
-	cout << "\tНомер группы -> ";
+	cout << "\tРќРѕРјРµСЂ РіСЂСѓРїРїС‹ -> ";
 	cin >> temp.group_number;
-	cout << "\tОценка -> ";
+	cout << "\tРћС†РµРЅРєР° -> ";
 	cin >> temp.mark;
 	cout << endl;
 	return temp;
@@ -90,23 +90,23 @@ void output_by_last_name(const char* iname) {
 
 	char last_name[30];
 
-	cout << "Введите фамилию: ", cin >> last_name;
+	cout << "Р’РІРµРґРёС‚Рµ С„Р°РјРёР»РёСЋ: ", cin >> last_name;
 	
-	fstream fin; // fin - поток ввода (для чтения структуры)
-	// Открытие файла для чтения в бинарном режиме
-	fin.open(iname, ios_base::in | ios_base::binary); // Функция fin.open открывает файл, имя которого указано в параметре fname и связывает его с потоком, который может быть идентифицирован для выполнения различных операций с файлом
+	fstream fin; // fin - РїРѕС‚РѕРє РІРІРѕРґР° (РґР»СЏ С‡С‚РµРЅРёСЏ СЃС‚СЂСѓРєС‚СѓСЂС‹)
+	// РћС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р° РґР»СЏ С‡С‚РµРЅРёСЏ РІ Р±РёРЅР°СЂРЅРѕРј СЂРµР¶РёРјРµ
+	fin.open(iname, ios_base::in | ios_base::binary); // Р¤СѓРЅРєС†РёСЏ fin.open РѕС‚РєСЂС‹РІР°РµС‚ С„Р°Р№Р», РёРјСЏ РєРѕС‚РѕСЂРѕРіРѕ СѓРєР°Р·Р°РЅРѕ РІ РїР°СЂР°РјРµС‚СЂРµ fname Рё СЃРІСЏР·С‹РІР°РµС‚ РµРіРѕ СЃ РїРѕС‚РѕРєРѕРј, РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ Р±С‹С‚СЊ РёРґРµРЅС‚РёС„РёС†РёСЂРѕРІР°РЅ РґР»СЏ РІС‹РїРѕР»РЅРµРЅРёСЏ СЂР°Р·Р»РёС‡РЅС‹С… РѕРїРµСЂР°С†РёР№ СЃ С„Р°Р№Р»РѕРј
 	if (!fin) {
-		cerr << "Ошибка открытия файла " << iname << "!" << endl; // iname - динамический массив
+		cerr << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° " << iname << "!" << endl; // iname - РґРёРЅР°РјРёС‡РµСЃРєРёР№ РјР°СЃСЃРёРІ
 		exit(EXIT_FAILURE);
 	}
 
-	Student temp; // Временная переменная temp, для чтения структуры
+	Student temp; // Р’СЂРµРјРµРЅРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ temp, РґР»СЏ С‡С‚РµРЅРёСЏ СЃС‚СЂСѓРєС‚СѓСЂС‹
 	
 	while (true) {
 
-		if (fin.eof()) break;  // Проверяет конец файла (EOF). 
+		if (fin.eof()) break;  // РџСЂРѕРІРµСЂСЏРµС‚ РєРѕРЅРµС† С„Р°Р№Р»Р° (EOF). 
 
-		fin.read(reinterpret_cast<char*>(&temp), sizeof(Student)); // Читаем входной файл для записи в него нового элемента
+		fin.read(reinterpret_cast<char*>(&temp), sizeof(Student)); // Р§РёС‚Р°РµРј РІС…РѕРґРЅРѕР№ С„Р°Р№Р» РґР»СЏ Р·Р°РїРёСЃРё РІ РЅРµРіРѕ РЅРѕРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 
 		if (strcmp(temp.name, last_name) == 0) {
 			cout << endl << temp.name << "\t" << temp.contract_number << "\t" << temp.group_number << "\t" << temp.mark << endl << endl;
@@ -120,12 +120,12 @@ void output_by_last_name(const char* iname) {
 void output_less_than_five(const char* iname) {
 
 	cout << endl;
-	cout << "Студенты с отметкой ниже 5:" << endl;
+	cout << "РЎС‚СѓРґРµРЅС‚С‹ СЃ РѕС‚РјРµС‚РєРѕР№ РЅРёР¶Рµ 5:" << endl;
 
 	fstream f;
 	f.open(iname, ios_base::in | ios_base::binary);
 	if (!f) {
-		cerr << "Ошибка открытия файла " << iname << "!" << endl;
+		cerr << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° " << iname << "!" << endl;
 		exit(EXIT_FAILURE);
 	}
 
@@ -147,7 +147,7 @@ void output_less_than_five(const char* iname) {
 
 
 void del_by_contract_number(const char* iname, const char* oname) {
-	cout << endl << "Введите номер договора: " << endl << "-> ";
+	cout << endl << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РґРѕРіРѕРІРѕСЂР°: " << endl << "-> ";
 
 	char c_number[30];
 	cin.ignore();
@@ -156,30 +156,30 @@ void del_by_contract_number(const char* iname, const char* oname) {
 	fstream f;
 	f.open(iname, ios_base::in | ios_base::binary);
 	if (!f) {
-		cerr << "Ошибка открытия файла " << iname << "!" << endl;
+		cerr << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° " << iname << "!" << endl;
 		exit(EXIT_FAILURE);
 	}
 	fstream f2;
 	f2.open(oname, ios_base::out | ios_base::binary);
 	if (!f2) {
-		cerr << "Ошибка открытия файла " << oname << "!" << endl;
+		cerr << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° " << oname << "!" << endl;
 		exit(EXIT_FAILURE);
 	}
 
-	short count = 0; // Счётчик кол-ва элементов 
+	short count = 0; // РЎС‡С‘С‚С‡РёРє РєРѕР»-РІР° СЌР»РµРјРµРЅС‚РѕРІ 
 
 	while (true) {
 		Student tmp;
 
 		if (!f.eof()) {
 
-			f.read(reinterpret_cast<char*>(&tmp), sizeof(Student));  // Считываем из входного файла в буферную переменную temp
+			f.read(reinterpret_cast<char*>(&tmp), sizeof(Student));  // РЎС‡РёС‚С‹РІР°РµРј РёР· РІС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° РІ Р±СѓС„РµСЂРЅСѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ temp
 
-			count++; // Считаем исходное количество элементов в структуре
+			count++; // РЎС‡РёС‚Р°РµРј РёСЃС…РѕРґРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РІ СЃС‚СЂСѓРєС‚СѓСЂРµ
 
-			if (!strstr(tmp.contract_number, c_number)) { // Если номер договора структуры в temp не равен введённому номеру договора
+			if (!strstr(tmp.contract_number, c_number)) { // Р•СЃР»Рё РЅРѕРјРµСЂ РґРѕРіРѕРІРѕСЂР° СЃС‚СЂСѓРєС‚СѓСЂС‹ РІ temp РЅРµ СЂР°РІРµРЅ РІРІРµРґС‘РЅРЅРѕРјСѓ РЅРѕРјРµСЂСѓ РґРѕРіРѕРІРѕСЂР°
 
-				f2.write(reinterpret_cast<char*>(&tmp), sizeof(Student));  // Из temp записываем в выходной файл
+				f2.write(reinterpret_cast<char*>(&tmp), sizeof(Student));  // РР· temp Р·Р°РїРёСЃС‹РІР°РµРј РІ РІС‹С…РѕРґРЅРѕР№ С„Р°Р№Р»
 			}
 		}
 		else break;
@@ -187,16 +187,16 @@ void del_by_contract_number(const char* iname, const char* oname) {
 	f.close();
 	f2.close();
 
-	std::remove("input.bin"); // Удаление входного файла
+	std::remove("input.bin"); // РЈРґР°Р»РµРЅРёРµ РІС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°
 
 	f.open(oname, ios_base::in | ios_base::binary);
 	if (!f) {
-		cerr << "Ошибка открытия файла " << oname << "!" << endl;
+		cerr << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° " << oname << "!" << endl;
 		exit(EXIT_FAILURE);
 	}
 	f2.open(iname, ios_base::out | ios_base::binary);
 	if (!f2) {
-		cerr << "Ошибка открытия файла " << iname << "!" << endl;
+		cerr << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° " << iname << "!" << endl;
 		exit(EXIT_FAILURE);
 	}
 
@@ -214,18 +214,18 @@ void del_by_contract_number(const char* iname, const char* oname) {
 
 void change_group(const char* iname, const char* oname) {
 	cout << endl;
-	cout << "Студенты чью группу следует изменить:" << endl;
+	cout << "РЎС‚СѓРґРµРЅС‚С‹ С‡СЊСЋ РіСЂСѓРїРїСѓ СЃР»РµРґСѓРµС‚ РёР·РјРµРЅРёС‚СЊ:" << endl;
 
 	fstream f;
 	f.open(iname, ios_base::in | ios_base::binary);
 	if (!f) {
-		cerr << "Ошибка открытия файла " << iname << "!" << endl;
+		cerr << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° " << iname << "!" << endl;
 		exit(EXIT_FAILURE);
 	}
 	fstream f2;
 	f2.open(oname, ios_base::out | ios_base::binary);
 	if (!f2) {
-		cerr << "Ошибка открытия файла " << oname << "!" << endl;
+		cerr << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° " << oname << "!" << endl;
 		exit(EXIT_FAILURE);
 	}
 
@@ -237,23 +237,23 @@ void change_group(const char* iname, const char* oname) {
 
 		if (!f.eof()) {
 
-			f.read(reinterpret_cast<char*>(&temp), sizeof(Student)); // Считываем из входного файла
+			f.read(reinterpret_cast<char*>(&temp), sizeof(Student)); // РЎС‡РёС‚С‹РІР°РµРј РёР· РІС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°
 
 			count++;
 
 			if (!f.eof()) {
-				if (temp.mark > 3) {  // Если оценка больше 3-х
-					f2.write(reinterpret_cast<char*>(&temp), sizeof(Student));  // Из temp записываем в выходной файл
+				if (temp.mark > 3) {  // Р•СЃР»Рё РѕС†РµРЅРєР° Р±РѕР»СЊС€Рµ 3-С…
+					f2.write(reinterpret_cast<char*>(&temp), sizeof(Student));  // РР· temp Р·Р°РїРёСЃС‹РІР°РµРј РІ РІС‹С…РѕРґРЅРѕР№ С„Р°Р№Р»
 
 				}
 				else {
 
 					cout << temp.name << "\t" << temp.contract_number << "\t" << temp.group_number << "\t" << temp.mark << endl;
-					cout << "Введите номер новой группы студента: ", cin >> new_group;
+					cout << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РЅРѕРІРѕР№ РіСЂСѓРїРїС‹ СЃС‚СѓРґРµРЅС‚Р°: ", cin >> new_group;
 					temp.group_number = new_group;
 
 					delta++;
-					f2.write(reinterpret_cast<char*>(&temp), sizeof(Student));  // Из temp записываем в выходной файл
+					f2.write(reinterpret_cast<char*>(&temp), sizeof(Student));  // РР· temp Р·Р°РїРёСЃС‹РІР°РµРј РІ РІС‹С…РѕРґРЅРѕР№ С„Р°Р№Р»
 					continue;
 
 				}
@@ -266,16 +266,16 @@ void change_group(const char* iname, const char* oname) {
 	f.close();
 	f2.close();
 
-	remove("input.bin"); // Удаление входного файла
+	remove("input.bin"); // РЈРґР°Р»РµРЅРёРµ РІС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°
 
 	f.open(oname, ios_base::in | ios_base::binary);
 	if (!f) {
-		cerr << "Ошибка открытия файла " << oname << "!" << endl;
+		cerr << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° " << oname << "!" << endl;
 		exit(EXIT_FAILURE);
 	}
 	f2.open(iname, ios_base::out | ios_base::binary);
 	if (!f2) {
-		cerr << "Ошибка открытия файла " << iname << "!" << endl;
+		cerr << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° " << iname << "!" << endl;
 		exit(EXIT_FAILURE);
 	}
 
@@ -295,35 +295,35 @@ void output_by_mark(const char* iname) {
 
 	int max_mark = 0; 
 
-	fstream fin; // fin - поток ввода (для чтения структуры)
-	// Открытие файла для чтения в бинарном режиме
-	fin.open(iname, ios_base::in | ios_base::binary); // Функция fin.open открывает файл, имя которого указано в параметре fname и связывает его с потоком, который может быть идентифицирован для выполнения различных операций с файлом
+	fstream fin; // fin - РїРѕС‚РѕРє РІРІРѕРґР° (РґР»СЏ С‡С‚РµРЅРёСЏ СЃС‚СЂСѓРєС‚СѓСЂС‹)
+	// РћС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р° РґР»СЏ С‡С‚РµРЅРёСЏ РІ Р±РёРЅР°СЂРЅРѕРј СЂРµР¶РёРјРµ
+	fin.open(iname, ios_base::in | ios_base::binary); // Р¤СѓРЅРєС†РёСЏ fin.open РѕС‚РєСЂС‹РІР°РµС‚ С„Р°Р№Р», РёРјСЏ РєРѕС‚РѕСЂРѕРіРѕ СѓРєР°Р·Р°РЅРѕ РІ РїР°СЂР°РјРµС‚СЂРµ fname Рё СЃРІСЏР·С‹РІР°РµС‚ РµРіРѕ СЃ РїРѕС‚РѕРєРѕРј, РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ Р±С‹С‚СЊ РёРґРµРЅС‚РёС„РёС†РёСЂРѕРІР°РЅ РґР»СЏ РІС‹РїРѕР»РЅРµРЅРёСЏ СЂР°Р·Р»РёС‡РЅС‹С… РѕРїРµСЂР°С†РёР№ СЃ С„Р°Р№Р»РѕРј
 	if (!fin) {
-		cerr << "Ошибка открытия файла " << iname << "!" << endl; // iname - динамический массив
+		cerr << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° " << iname << "!" << endl; // iname - РґРёРЅР°РјРёС‡РµСЃРєРёР№ РјР°СЃСЃРёРІ
 		exit(EXIT_FAILURE);
 	}
 
-	Student temp; // Временная переменная temp, для чтения структуры
+	Student temp; // Р’СЂРµРјРµРЅРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ temp, РґР»СЏ С‡С‚РµРЅРёСЏ СЃС‚СЂСѓРєС‚СѓСЂС‹
 
 	while (true) {
 
-		if (fin.eof()) break;  // Проверяет конец файла (EOF). 
+		if (fin.eof()) break;  // РџСЂРѕРІРµСЂСЏРµС‚ РєРѕРЅРµС† С„Р°Р№Р»Р° (EOF). 
 
-		fin.read(reinterpret_cast<char*>(&temp), sizeof(Student)); // Читаем входной файл для записи в него нового элемента
+		fin.read(reinterpret_cast<char*>(&temp), sizeof(Student)); // Р§РёС‚Р°РµРј РІС…РѕРґРЅРѕР№ С„Р°Р№Р» РґР»СЏ Р·Р°РїРёСЃРё РІ РЅРµРіРѕ РЅРѕРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 
 		if (temp.mark > max_mark)  max_mark = temp.mark;
 		
 	}
 	fin.close();
 
-	fin.open(iname, ios_base::in | ios_base::binary); // Функция fin.open открывает файл, имя которого указано в параметре fname и связывает его с потоком, который может быть идентифицирован для выполнения различных операций с файлом
+	fin.open(iname, ios_base::in | ios_base::binary); // Р¤СѓРЅРєС†РёСЏ fin.open РѕС‚РєСЂС‹РІР°РµС‚ С„Р°Р№Р», РёРјСЏ РєРѕС‚РѕСЂРѕРіРѕ СѓРєР°Р·Р°РЅРѕ РІ РїР°СЂР°РјРµС‚СЂРµ fname Рё СЃРІСЏР·С‹РІР°РµС‚ РµРіРѕ СЃ РїРѕС‚РѕРєРѕРј, РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ Р±С‹С‚СЊ РёРґРµРЅС‚РёС„РёС†РёСЂРѕРІР°РЅ РґР»СЏ РІС‹РїРѕР»РЅРµРЅРёСЏ СЂР°Р·Р»РёС‡РЅС‹С… РѕРїРµСЂР°С†РёР№ СЃ С„Р°Р№Р»РѕРј
 	if (!fin) {
-		cerr << "Ошибка открытия файла " << iname << "!" << endl; // iname - динамический массив
+		cerr << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° " << iname << "!" << endl; // iname - РґРёРЅР°РјРёС‡РµСЃРєРёР№ РјР°СЃСЃРёРІ
 		exit(EXIT_FAILURE);
 	}
 
 	while (!fin.eof()) {
-		fin.read(reinterpret_cast<char*>(&temp), sizeof(Student)); // Читаем входной файл для записи в него нового элемента
+		fin.read(reinterpret_cast<char*>(&temp), sizeof(Student)); // Р§РёС‚Р°РµРј РІС…РѕРґРЅРѕР№ С„Р°Р№Р» РґР»СЏ Р·Р°РїРёСЃРё РІ РЅРµРіРѕ РЅРѕРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 		if (!fin.eof()) {
 			if (temp.mark == max_mark) cout << temp.name << endl;
 		}
@@ -341,54 +341,54 @@ void change_by_last_name(const char* iname, const char* oname) {
 	int new_mark;
 	int count = 0;
 
-	cout << "Введите фамилию: ", cin >> last_name;
-	cout << "Введите оценку: ", cin >> new_mark;
+	cout << "Р’РІРµРґРёС‚Рµ С„Р°РјРёР»РёСЋ: ", cin >> last_name;
+	cout << "Р’РІРµРґРёС‚Рµ РѕС†РµРЅРєСѓ: ", cin >> new_mark;
 
 	fstream f;
 	f.open(iname, ios_base::in | ios_base::binary);
 	if (!f) {
-		cerr << "Ошибка открытия файла " << iname << "!" << endl;
+		cerr << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° " << iname << "!" << endl;
 		exit(EXIT_FAILURE);
 	}
 
 	fstream f2;
 	f2.open(oname, ios_base::out | ios_base::binary);
 	if (!f2) {
-		cerr << "Ошибка открытия файла " << oname << "!" << endl;
+		cerr << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° " << oname << "!" << endl;
 		exit(EXIT_FAILURE);
 	}
 
 	while (true) {
 
-		Student temp; // Временная переменная temp, для чтения структуры
+		Student temp; // Р’СЂРµРјРµРЅРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ temp, РґР»СЏ С‡С‚РµРЅРёСЏ СЃС‚СЂСѓРєС‚СѓСЂС‹
 
-		if (f.eof()) break;  // Проверяет конец файла (EOF). 
+		if (f.eof()) break;  // РџСЂРѕРІРµСЂСЏРµС‚ РєРѕРЅРµС† С„Р°Р№Р»Р° (EOF). 
 
-		count++; // Считаем количество считынных элементов из фходного файла
+		count++; // РЎС‡РёС‚Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‡РёС‚С‹РЅРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ РёР· С„С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°
 
-		f.read(reinterpret_cast<char*>(&temp), sizeof(Student)); // Читаем входной файл и помещаем в temp
+		f.read(reinterpret_cast<char*>(&temp), sizeof(Student)); // Р§РёС‚Р°РµРј РІС…РѕРґРЅРѕР№ С„Р°Р№Р» Рё РїРѕРјРµС‰Р°РµРј РІ temp
 
-		if (strcmp(temp.name, last_name) == 0) { // Сравниваем фамилии
-			temp.mark = new_mark; // Заменяем оценку на новую
+		if (strcmp(temp.name, last_name) == 0) { // РЎСЂР°РІРЅРёРІР°РµРј С„Р°РјРёР»РёРё
+			temp.mark = new_mark; // Р—Р°РјРµРЅСЏРµРј РѕС†РµРЅРєСѓ РЅР° РЅРѕРІСѓСЋ
 		}
 
-		f2.write(reinterpret_cast<char*>(&temp), sizeof(Student)); // Записываем в выходной файл
+		f2.write(reinterpret_cast<char*>(&temp), sizeof(Student)); // Р—Р°РїРёСЃС‹РІР°РµРј РІ РІС‹С…РѕРґРЅРѕР№ С„Р°Р№Р»
 	}
 
 	f.close();
 	f2.close();
 
-	remove("input.bin"); // Удаление входного файла
+	remove("input.bin"); // РЈРґР°Р»РµРЅРёРµ РІС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°
 
 	f.open(oname, ios_base::in | ios_base::binary);
 	if (!f) {
-		cerr << "Ошибка открытия файла " << iname << "!" << endl;
+		cerr << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° " << iname << "!" << endl;
 		exit(EXIT_FAILURE);
 	}
 
 	f2.open(iname, ios_base::out | ios_base::binary);
 	if (!f2) {
-		cerr << "Ошибка открытия файла " << oname << "!" << endl;
+		cerr << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° " << oname << "!" << endl;
 		exit(EXIT_FAILURE);
 	}
 
