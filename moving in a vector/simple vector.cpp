@@ -22,16 +22,16 @@ void print() {
 
 		cout << endl;		
 	}
-	cout << "Для закрытия программы нажмите Esc." << endl;
+	cout << "Р”Р»СЏ Р·Р°РєСЂС‹С‚РёСЏ РїСЂРѕРіСЂР°РјРјС‹ РЅР°Р¶РјРёС‚Рµ Esc." << endl;
 }
 int main()
 {
 	setlocale(0,"");
 	
-	cout << "Введите размер матрицы [NxM]: ";
+	cout << "Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ РјР°С‚СЂРёС†С‹ [NxM]: ";
 	cin >> N >> M;
 	if (N < 1 || M < 1) {
-		cout << "Неверные данные." << endl;
+		cout << "РќРµРІРµСЂРЅС‹Рµ РґР°РЅРЅС‹Рµ." << endl;
 		return 1;
 	}
 	
@@ -46,9 +46,9 @@ int main()
 	print();
 	while (true)
 	{
-		if (_kbhit()) // слушатель нажатия на клаву
+		if (_kbhit()) // СЃР»СѓС€Р°С‚РµР»СЊ РЅР°Р¶Р°С‚РёСЏ РЅР° РєР»Р°РІСѓ
 		{
-			switch (_getch()) // ждёт нажатия на клаву без Enter после этого
+			switch (_getch()) // Р¶РґС‘С‚ РЅР°Р¶Р°С‚РёСЏ РЅР° РєР»Р°РІСѓ Р±РµР· Enter РїРѕСЃР»Рµ СЌС‚РѕРіРѕ
 			{
 			case 27: //esc
 				for (int i = 0; i < N; i++)
@@ -56,22 +56,22 @@ int main()
 				delete mainArray;
 				return 0;
 			case 13: //enter
-				cout << "Введите новое значение: ";
+				cout << "Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ: ";
 				cin >> mainArray[row][column];
 				break;
-			case 72: //вверх
+			case 72: //РІРІРµСЂС…
 				if(row>0)
 					row--;
 				break;
-			case 80: //вниз
+			case 80: //РІРЅРёР·
 				if(row<N-1)
 				row++;
 				break;
-			case 75: //влево 
+			case 75: //РІР»РµРІРѕ 
 				if(column>0)
 				column--;
 				break;
-			case 77: //вправо
+			case 77: //РІРїСЂР°РІРѕ
 				if(column<M-1)
 				column++;
 				break;
