@@ -80,7 +80,6 @@ public:
     }
 
     PriorityQueue& operator=(PriorityQueue& q) { // Оператор присваивания
-        // Создание и заполнение узла
         Node* current = q.back;
 
         if (front == NULL) {
@@ -165,6 +164,13 @@ public:
 
     }
 
+    Node* swap(Node* current) {
+        Node* temp = current->prev;
+        current->prev = current->prev->prev; // 1 -> 3
+        temp->prev = current; // 2 -> 1
+        return temp;
+    }
+
     void add(int new_data, int new_priority) {
         // Вспомогательные метки
         Node* temp = NULL;
@@ -183,57 +189,38 @@ public:
 
             switch (new_node->priority) {
             case 1:
-                while (current->prev->priority < 1) {// 3 -> low priority
-                    if (current->prev == front) {
-                        if (current == back)
-                            back = current->prev;
-
-                        /// ОБМЕН УЗЛОВ ///
-                        temp = current->prev;
-                        current->prev = current->prev->prev; // 1 -> 3
-                        temp->prev = current; // 2 -> 1
-                        ////////////////////
-
+                while (current->prev->priority < 1) {// 1 -> low priority
+                    if (current->prev == front)
                         front = current;
-                    }
-                    else {
-                        if (current == back)
-                            back = current->prev;
 
-                        /// ОБМЕН УЗЛОВ ///
-                        temp = current->prev;
-                        current->prev = current->prev->prev; // 1 -> 3
-                        temp->prev = current; // 2 -> 1
-                        ////////////////////
-                    }
+                    if (current == back)
+                        back = current->prev;
+
+                    temp = swap(current);
+
+                    tail->prev = temp;
+                    tail = temp;
 
                     if (current->prev == NULL)
                         break;
                 }
+                break;
             case 2:
                 while (current->prev->priority < 2) {// 2 -> middle rear
-                    if (current->prev == front) {
-                        if (current == back)
-                            back = current->prev;
-
-                        /// ОБМЕН УЗЛОВ ///
-                        temp = current->prev;
-                        current->prev = current->prev->prev; // 1 -> 3
-                        temp->prev = current; // 2 -> 1
-                        ////////////////////
-
+                    if (current->prev == front)
                         front = current;
-                    }
-                    else {
-                        if (current == back)
-                            back = current->prev;
 
-                        /// ОБМЕН УЗЛОВ ///
-                        temp = current->prev;
-                        current->prev = current->prev->prev; // 1 -> 3
-                        temp->prev = current; // 2 -> 1
-                        ////////////////////
+                    if (current == back) {
+                        back = current->prev;
+                        tail = back;
                     }
+
+                    temp = swap(current);
+
+                    if (tail != temp)
+                        tail->prev = temp;
+
+                    tail = temp;
 
                     if (current->prev == NULL)
                         break;
@@ -241,39 +228,28 @@ public:
                 break;
             case 3:
                 while (current->prev->priority < 3) {// 3 -> high priority
-                    if (current->prev == front) {
-                        if (current == back)
-                            back = current->prev;
-
-                        /// ОБМЕН УЗЛОВ ///
-                        temp = current->prev;
-                        current->prev = current->prev->prev; // 1 -> 3
-                        temp->prev = current; // 2 -> 1
-                        ////////////////////
-
+                    if (current->prev == front)
                         front = current;
-                    }
-                    else {
-                        if (current == back) {
-                            back = current->prev;
-                            tail = back; // tail - элемент, стоящий перед обмениваемым 
-                        }
 
-                        temp = current->prev;
-                        current->prev = current->prev->prev; // 1 -> 3
-                        temp->prev = current; // 2 -> 1
-
-                        tail->prev = temp; // tail "ссылается" на элемент, перед обмениваемым
-                        tail = temp; // tail становится перед обмениваемым
+                    if (current == back) {
+                        back = current->prev;
+                        tail = back;
                     }
+
+                    temp = swap(current);
+
+                    if (tail != temp)
+                        tail->prev = temp;
+
+                    tail = temp;
 
                     if (current->prev == NULL)
                         break;
                 }
                 break;
+                }
             }
-        }
-        else { // Если список пуст, началом будет являться доабвляемый элемент
+        else { // Если список пуст, началом будет являться добавляемый элемент
             front = new_node;
             back = new_node;
         }
@@ -293,7 +269,6 @@ public:
             cout << "Список пуст";
         }
         else {
-            //while (current->next != NULL)
             cout << "back -> ";
             while (current != nullptr) {
                 cout << current->data << "("<<current->priority << ") " << " -> ";
