@@ -3,7 +3,7 @@ import random
 
 ##### ПЕРЕМЕШИВАНИЕ С ПЕРЕИМЕНОВАНИЕМ #####
 
-folder = "E:\\Media\\Steam screens"
+folder = "E:\\Media\\Aestetics"
 os.chdir(folder)
 print("DIRECTORY HAS OPEN: ", os.getcwd())
 item_counter = 0
