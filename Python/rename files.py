@@ -3,7 +3,7 @@ import random
 
 ##### ПЕРЕМЕШИВАНИЕ С ПЕРЕИМЕНОВАНИЕМ #####
 
-folder = "E:\\Media\\Aestetics"
+folder = "E:\\Media\\Steam screens"
 os.chdir(folder)
 print("DIRECTORY HAS OPEN: ", os.getcwd())
 item_counter = 0
@@ -27,7 +27,7 @@ for i in os.listdir(folder):
 ############################################
 
 ####### УПОРЯДОЧЕННОЕ ПЕРЕИМЕНОВАНИЕ #######
-
+"""
 folder = "E:\\Media\\x\\PH"
 item_index = 1
 
@@ -39,6 +39,8 @@ os.chdir(folder)
 for i in os.listdir(folder):
     os.rename(i, str(item_index)+".jpg")
     item_index+=1
+
+"""
 
 ############################################
 

@@ -1,0 +1,74 @@
+[
+  {
+    "type": "oval",
+    "lineColor": "#000000",
+    "fillColor": "#0000FF",
+    "x": 375,
+    "y": 400,
+    "width": 150,
+    "height": 150,
+    "layer": 2
+  },
+  {
+    "type": "rectangle",
+    "lineColor": "#000000",
+    "fillColor": "#A0522D",
+    "x": 200,
+    "y": 300,
+    "width": 500,
+    "height": 400,
+    "layer": 1
+  },
+  {
+    "type": "rectangle",
+    "lineColor": "#000000",
+    "fillColor": "#8B4513",
+    "x": 200,
+    "y": 600,
+    "width": 500,
+    "height": 100,
+    "layer": 2
+  },
+  {
+    "type": "arc",
+    "lineColor": "#A0522D",
+    "fillColor": "#8B4513",
+    "x": 350,
+    "y": 200,
+    "width": 200,
+    "height": 200,
+    "startAngle": 0,
+    "arcAngle": 180,
+    "layer": 5
+  },
+  {
+    "type": "line",
+    "lineColor": "#000000",
+    "x1": 450,
+    "y1": 400,
+    "x2": 450,
+    "y2": 550,
+    "layer": 3
+  },
+  {
+    "type": "line",
+    "lineColor": "#000000",
+    "x1": 525,
+    "y1": 475,
+    "x2": 375,
+    "y2": 475,
+    "layer": 3
+  },
+  {
+    "type": "polygon",
+    "lineColor": "#000000",
+    "fillColor": "#8B4513",
+    "x": [
+      100, 800, 450
+    ],
+    "y": [
+      300, 300, 100
+    ],
+    "layer": 4
+  }
+]
