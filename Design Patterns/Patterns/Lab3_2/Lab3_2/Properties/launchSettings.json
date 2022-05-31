@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "Lab3_2": {
-      "commandName": "Project",
-      "commandLineArgs": "xml data.xml"
-    }
-  }
-}

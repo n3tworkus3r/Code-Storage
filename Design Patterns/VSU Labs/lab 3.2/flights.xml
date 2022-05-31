@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flights>
+	<flight>
+		<date>1991-09-22</date>
+		<mass>500</mass>
+		<length>783</length>
+		<govnumber>3532</govnumber>
+	</flight>
+	<flight>
+		<date>1988-09-12</date>
+		<mass>720</mass>
+		<length>1539</length>
+		<govnumber>1123</govnumber>
+	</flight>
+	<flight>
+		<date>2003-10-28</date>
+		<mass>1230</mass>
+		<length>4210</length>
+		<govnumber>9843</govnumber>
+	</flight>
+	<flight>
+		<date>1985-07-06</date>
+		<mass>1000</mass>
+		<length>1123</length>
+		<govnumber>1240</govnumber>
+	</flight>
+	<flight>
+		<date>1991-05-07</date>
+		<mass>360</mass>
+		<length>4120</length>
+		<govnumber>9912</govnumber>
+	</flight>
+	<flight>
+		<date>1999-11-24</date>
+		<mass>547</mass>
+		<length>7821</length>
+		<govnumber>5531</govnumber>
+	</flight>
+	<flight>
+		<date>1989-02-02</date>
+		<mass>998</mass>
+		<length>576</length>
+		<govnumber>7342</govnumber>
+	</flight>
+</flights>

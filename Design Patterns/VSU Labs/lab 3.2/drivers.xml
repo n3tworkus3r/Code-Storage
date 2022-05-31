@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cars>
+	<car>
+		<govnumber>3532</govnumber>
+		<name>Volskwagen</name>
+		<driver>Alexey</driver>
+	</car>
+	<car>
+		<govnumber>1123</govnumber>
+		<name>Icarus</name>
+		<driver>Maxim</driver>
+	</car>
+	<car>
+		<govnumber>9843</govnumber>
+		<name>Lada</name>
+		<driver>Evgeniy</driver>
+	</car>
+	<car>
+		<govnumber>1240</govnumber>
+		<name>Jeep</name>
+		<driver>Stanislav</driver>
+	</car>
+	<car>
+		<govnumber>9912</govnumber>
+		<name>Lada</name>
+		<driver>Yury</driver>
+	</car>
+	<car>
+		<govnumber>5531</govnumber>
+		<name>Mersedess</name>
+		<driver>Vadim</driver>
+	</car>
+	<car>
+		<govnumber>7342</govnumber>
+		<name>Tesla</name>
+		<driver>Sam</driver>
+	</car>
+</cars>

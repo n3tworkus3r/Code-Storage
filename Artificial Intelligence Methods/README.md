@@ -1,2 +1,0 @@
-# AIM
-Artificial Intelligence Methods
