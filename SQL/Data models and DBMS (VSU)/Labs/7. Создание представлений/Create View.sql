@@ -1,5 +1,6 @@
 -- C помощью SQL запроса создать представление, содержащее данные об агентах, отвечающих за продажу объектов. --
--- Представление должно включать номер отделения (Branch_no), номер работника (Staff_no) и сведения о количестве объектов, за которые он отвечает. --
+-- Представление должно включать номер отделения (Branch_no), номер работника (Staff_no) и сведения о количестве объектов,
+-- за которые он отвечает. --
 
     -- QUERY: --
     CREATE VIEW STAFF_PROP (Branch_no, Staff_no, Properties)
@@ -60,35 +61,50 @@
 -- С помощью представления вывести адреса  квартир, у которых площадь кухни не менее 12 метров. --
 
     -- VIEW: --
-    CREATE VIEW PROPERTY_AREA (Property_no, the_area, kitchen_area)
-    AS SELECT PROPERTY.Property_no, PROPERTY.the_area, (SELECT value FROM STRING_SPLIT(PROPERTY.the_area,'/')[0])
-    FROM PROPERTY
-    GROUP BY  PROPERTY.Property_no,  PROPERTY.the_area
+    CREATE VIEW PROP_AREA (Property_no, area, kitchen)
+    AS
+    SELECT Property_no, 
+        (SELECT SUM(CAST( VALUE AS float)) FROM STRING_SPLIT(PROPERTY.the_area, '/')) as full_area,  
+        CAST( right(CONVERT(nvarchar,the_area), charindex('/', REVERSE(CONVERT(nvarchar,the_area))) - 1) AS INT)
+    FROM PROPERTY 
+
+
+
 
     -- USING: --
     SELECT * FROM PROPERTY_AREA
 
     -- QUERY --
-    SELECT PROPERTY.Street, PROPERTY.House, PROPERTY.Flat FROM PROPERTY WHERE PROPERTY.Property_no IN (SELECT Property_no FROM [PROPERTY_AREA] WHERE kitchen_area >= 12)
+    SELECT PROPERTY.Street, PROPERTY.House, PROPERTY.Flat FROM PROPERTY WHERE PROPERTY.Property_no IN (SELECT Property_no FROM PROP_AREA WHERE kitchen >= 12)
 
     -- DELETE: -- 
     DROP VIEW PROPERTY_AREA
 
--- 4.	Содержащее данные о квартирах (Property_no), которые были осмотрены более 2 раз и у которых в поле comment таблицы Viewing записано «требует ремонта». --
--- С помощью представления создать запрос, возвращающий фамилии и номера телефонов владельцев этих квартир. --
-
--- QUERY: --
-CREATE VIEW PROPERTY_INFO (Property_no, Date_View, Comments)
-AS SELECT PROPERTY.Property_no, COUNT(*), VIEWING.Comments
-FROM PROPERTY INNER JOIN VIEWING ON PROPERTY.Property_no=
-VIEWING.Property_no
-GROUP BY PROPERTY.Property_no, VIEWING.Date_View;
 
 
 
 
+--4.    Содержащее данные о квартирах, которые были осмотрены более 2 раз и у которых в поле comment таблицы Viewing записано «требует ремонта». 
+--      С помощью представления создать запрос, возвращающий фамилии и номера телефонов владельцев этих квартир
+
+CREATE VIEW BAD_PROP(Property_no, Owner_no)
+AS
+SELECT p.Property_no, p.Owner_no
+FROM PROPERTY p
+INNER JOIN VIEWING v ON p.Property_no = v.Property_no
+WHERE v.Comments LIKE 'требует ремонта'
+GROUP BY p.Property_no, p.Owner_no
+HAVING count(v.Property_no) > 2
+
+GO
+
+SELECT o.Owner_no, o.FName, o.Otel_no
+FROM BAD_PROP bp
+LEFT JOIN OWNER o ON o.Owner_no = bp.Owner_no
 
 
+
+-- КОНТРОЛЬНЫЕ ВОПРОСЫ --
 
 -- 1.	Для чего используются представления?
 --    Представление дает возможность пользователю работать только с теми данными,

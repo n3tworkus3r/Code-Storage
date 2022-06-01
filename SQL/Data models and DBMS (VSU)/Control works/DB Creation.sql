@@ -1,12 +1,12 @@
 CREATE DATABASE Faculty
 ON PRIMARY (NAME=Faculty,
-FILENAME = 'D:\Repositories\SQL\Faculty\Faculty.mdf',
+FILENAME = 'D:\Projects\SQL\Faculty\Faculty.mdf',
 Size=3Mb,
 Maxsize=15Mb,
 FileGrowth=1Mb)
 Log On
 (NAME=lTaxiStation,
-FILENAME = 'D:\Repositories\SQL\Faculty\Faculty.ldf',
+FILENAME = 'D:\Projects\SQL\Faculty\Faculty.ldf',
 Size=3Mb,
 Maxsize=15Mb,
 FileGrowth=1Mb)

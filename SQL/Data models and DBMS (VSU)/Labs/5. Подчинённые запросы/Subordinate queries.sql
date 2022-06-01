@@ -1,39 +1,42 @@
 -- 1. Вывести адреса объектов недвижимости, которые не были осмотрены покупателями (использовать NOT IN). --
     
     -- QUERY: --
+
     SELECT PROPERTY.City, PROPERTY.Street, PROPERTY.Flat
     FROM PROPERTY
     WHERE PROPERTY.Property_no NOT IN (SELECT VIEWING.Property_no FROM VIEWING);
 
 -- 2. Вывести адреса объектов недвижимости, которые не были осмотрены покупателями (использовать NOT EXISTS). --
 
+    -- QUERY: --
 
     SELECT PROPERTY.City, PROPERTY.Street, PROPERTY.Flat 
     FROM PROPERTY
     WHERE NOT EXISTS (SELECT City, Street, Flat  FROM VIEWING WHERE PROPERTY.Property_no = VIEWING.Property_no)
 
--- 3. Вывести адреса объектов недвижимости, которые не были осмотрены покупателями (не использовать NOT IN, NOT EXISTS). --
-    -- QUERY: --
 
 
 -- 4. Вывести список трехкомнатных квартир, цены которых не превышают средней цены двухкомнатной квартиры. --
 
     -- QUERY: --
+
     SELECT * FROM PROPERTY
     WHERE PROPERTY.Rooms = 3 and PROPERTY.Selling_Price < (SELECT AVG(PROPERTY.Selling_Price) FROM PROPERTY WHERE Rooms = 2)
 
 -- 5. Вывести список адресов квартир в каждом городе, цены которых превышают среднюю цену квартир в этом городе. --
 
     -- QUERY: --
+
     SELECT PROPERTY.City, PROPERTY.Street, PROPERTY.Flat
     FROM PROPERTY
     WHERE PROPERTY.Selling_Price > (SELECT AVG(PROPERTY.Selling_Price) FROM Property WHERE PROPERTY.City = PROPERTY.City)
 
--- 6. Вывести список адресов квартир однокомнатных квартир в Витебске, цены которых выше цены любой двухкомнатной квартиры в Полоцке. --
+
 
 -- 7. Вывести номера отделений, в которых средняя заработная плата сотрудников в два раза ниже заработной платы директора компании. --
 
     -- QUERY: -- 
+
     SELECT STAFF.Branch_no
     FROM STAFF
     WHERE STAFF.Position != 'директор' 
@@ -43,6 +46,7 @@
 -- 8. Найти сотрудников (Staff_no, Fname), продавших максимальное количество объектов недвижимости в своем отделении, в течение последних трех месяцев. --
 
     -- !!! QUERY: -- 
+
     SELECT PROPERTY.Staff_no, STAFF.FName
     FROM PROPERTY
     JOIN STAFF ON STAFF.Staff_no = PROPERTY.Staff_no
@@ -64,6 +68,7 @@
 -- 9. Определить количество отделений, в которых средняя заработная плата в два раза ниже заработной платы директора компании. --
 
     -- QUERY: --
+
     SELECT COUNT(*) FROM
 	(SELECT STAFF.Branch_no 
 	FROM STAFF
@@ -77,6 +82,7 @@
 -- 10. Определить количество сотрудников компании заработная плата которых превышают среднюю заработную плату. --
 
     -- QUERY: --
+
     SELECT COUNT(*) 
     FROM STAFF 
     WHERE Salary > (SELECT AVG(Salary) FROM STAFF);
@@ -85,6 +91,7 @@
 -- 11. Вывести данные сотрудников каждого отделения, заработная плата которых не превышает среднюю заработную плату и которые продали более двух квартир в течение последних шести месяцев. --
 
     --!!! QUERY: -- 
+    
     SELECT STAFF.Staff_no, STAFF.FName, STAFF.LName
     FROM PROPERTY
     JOIN STAFF ON PROPERTY.Staff_no = STAFF.Staff_no 
@@ -98,3 +105,15 @@
 
 
 
+
+
+
+
+
+-- 6. Вывести список адресов квартир однокомнатных квартир в Витебске, цены которых выше цены любой двухкомнатной квартиры в Полоцке. --
+
+    -- QUERY: --
+
+-- 3. Вывести адреса объектов недвижимости, которые не были осмотрены покупателями (не использовать NOT IN, NOT EXISTS). --
+    
+    -- QUERY: --
