@@ -42,4 +42,10 @@
 		<length>576</length>
 		<govnumber>7342</govnumber>
 	</flight>
+	<flight>
+		<date>2003-10-28</date>
+		<mass>1230</mass>
+		<length>7210</length>
+		<govnumber>9843</govnumber>
+	</flight>
 </flights>

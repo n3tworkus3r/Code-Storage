@@ -2,14 +2,14 @@
 CREATE DATABASE DreamHome
 ON PRIMARY(
     NAME = DreamHome,
-    FILENAME='D:\Repositories\SQL\Dreamhome\DreamHome.mdf',
+    FILENAME='D:\Projects\SQL\Dreamhome\DreamHome.mdf',
     Size = 15Mb,
     MaxSize = 30Mb,
     FileGrowth = 1Mb
 )
 Log On(
-    NAME = DreamHome2_log,
-    FILENAME='D:\Repositories\SQL\Dreamhome\DreamHome.ldf',
+    NAME = DreamHome_log,
+    FILENAME='D:\Projects\SQL\Dreamhome\DreamHome.ldf',
     Size = 2Mb,
     MaxSize = 7Mb,
     FileGrowth = 1Mb

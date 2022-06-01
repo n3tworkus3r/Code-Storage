@@ -3,15 +3,10 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-import java.util.Collections;
-import java.util.Comparator;
-
-import java.time.temporal.ChronoUnit;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -20,8 +15,6 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 
 
@@ -30,7 +23,8 @@ class Car{
     public String name;
     public String driver;
     public List<Flight> cases;
-    public double full = 0;
+    public int max_len = 0;
+    public int avg_mass = 0;
     public Car(int govnumber, String name, String driver){
         this.govnumber = govnumber;
         this.name = name; 
@@ -39,7 +33,7 @@ class Car{
         this.cases = new ArrayList<Flight>();
     }
     public String toString(){
-        return "Гос. номер " + govnumber  + ". Марка -  " + name + ". Водитель - " + driver + ". Общий пробег" + full;
+        return "\nGoverment number - " + govnumber  + ". Brand -  " + name + ". Driver name - " + driver + ". Total mileage - " + max_len + ". Average mass - " + avg_mass;
     }
 }
 
@@ -56,7 +50,7 @@ class Flight{
         this.govnumber = govnumber;
     }
     public String toString(){
-        return "Дата: " + date.toString() + ". Масса груза:  " + mass + "\n" + "Длина маршрута: " + length + "Гос номер:" + govnumber;
+        return "\nDate: " + date.toString() + "\nLoad weight:  " + mass + "\nRoute length: " + length + "\nGov. number: " + govnumber + "\n";
     }
 
 }
@@ -192,7 +186,7 @@ class CSV_reader extends Basic_reader{
             String line = br.readLine();
             while (line != null) {
             String[] attributes = line.split(",");
-
+            if (line == "") { break; }
             int _govnumber = Integer.parseInt(attributes[0]);
             String _name = attributes[1];
             String _driver = attributes[2];
@@ -210,9 +204,10 @@ class CSV_reader extends Basic_reader{
             String line = br.readLine();
             while (line != null) {
             String[] attributes = line.split(",");
-            int _length = Integer.parseInt(attributes[0]);
-            LocalDate _date = LocalDate.parse(attributes[1]);
-            int _mass = Integer.parseInt(attributes[2]);
+
+            LocalDate _date = LocalDate.parse(attributes[0]);
+            int _mass = Integer.parseInt(attributes[1]);
+            int _length = Integer.parseInt(attributes[2]);
             int _govnumber = Integer.parseInt(attributes[3]);;
             l.add(new Flight(_length, _date, _mass, _govnumber));
             line = br.readLine(); } } 
@@ -229,13 +224,14 @@ class Reader_fact{
     public Reader_fact(){}
     public static Reader_fact get_instance(String ext, String[] file_names){
         if(instance==null){
-        ext = ext;
-        file_names = file_names;
-        if(ext.equals("csv"))
-            reader = new CSV_reader(file_names);
-        else
-            reader = new XML_reader(file_names);
-        instance = new Reader_fact();}
+            ext = ext;
+            file_names = file_names;
+            if(ext.equals("csv"))
+                reader = new CSV_reader(file_names);
+            else
+                reader = new XML_reader(file_names);
+            instance = new Reader_fact();
+        }
         return instance;
     }
     public Basic_reader get_reader(){
@@ -251,20 +247,22 @@ class Database{
         this.dl = dl;
         bind_cases();
     }
-
     
     public void bind_cases() {
         for (Car a : ad) {
             int max_length = 0;
+            int mass_sum = 0;
+            int counter = 0;
             for (Flight d : dl) {
                 if (a.govnumber == d.govnumber) {
                     a.cases.add(d);
-                    int temp = d.length;
-                    max_length += temp;
+                    max_length += d.length;
+                    mass_sum += d.mass;
+                    counter++;
                 }
             }
-            a.full = max_length;
-
+            a.max_len = max_length;
+            a.avg_mass = mass_sum/counter;
         }
     }
     public void print_all(){
@@ -294,11 +292,13 @@ class Database{
 
 
 
-public class LR_3_2 {
+public class Cars {
     public static Database db;
     public static Reader_fact factory;
     public static void main(String[] args) throws ClassNotFoundException{
-        factory = new Reader_fact().get_instance(args[0], new String[]{args[1],args[2]});
+        //factory = new Reader_fact().get_instance(args[0], new String[]{args[1],args[2]});
+        factory = new Reader_fact().get_instance("csv", new String[] {"drivers.csv","flights.csv"});
+        //System.out.println("xxxxxxxx");
         db = factory.get_reader().read_data();
         db.print_profiles();
     }
