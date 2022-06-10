@@ -1,0 +1,61 @@
+*************
+
+View collection student/languages/groups:
+view student/language/group
+
+*************
+
+Add student:
+add student name makerId price sectionId
+
+Add language:
+add language Title Address
+
+Add group:
+add group name fio
+
+*************
+
+Edit student:
+edit student productId newName newMakerId newPrice newSectionId
+
+Редактирование производителя:
+edit maker makerId newTitle newAddress
+
+Редактирование отдела:
+edit section sectionId newName newFio
+
+*************
+
+Удаление товара:
+delete product productId
+
+Удаление производителя:
+delete maker makerId
+
+Удаление отдела:
+delete section sectionId
+
+*************
+
+Поиск товара:
+find product productId
+
+Поиск производителя:
+find maker makerId
+
+Поиск отдела:
+find section sectionId
+
+*************
+
+Справка:
+help
+
+Отмена операции:
+cancel
+
+Выход из программы:
+exit
+
+*************
