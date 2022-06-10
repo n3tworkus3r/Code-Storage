@@ -3,7 +3,8 @@ import random
 
 ##### ПЕРЕМЕШИВАНИЕ С ПЕРЕИМЕНОВАНИЕМ #####
 
-folder = "E:\\Media\\Steam screens"
+folder ="E:\\Media\\X Arch\\Aestetics" #  "C:\\Users\\US3R\\Downloads\\x"
+
 os.chdir(folder)
 print("DIRECTORY HAS OPEN: ", os.getcwd())
 item_counter = 0
@@ -19,9 +20,13 @@ for i in range(1, item_counter + 1):
 
 random.shuffle(item_list)
 
+print('Preparation...')
+
 for i in os.listdir(folder):
     os.rename(i, str(item_list[index]) + ".jpg")
     index += 1
+
+    os.system('cls')
     print(index * 100 / len(item_list))
 
 ############################################
