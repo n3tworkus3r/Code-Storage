@@ -11,6 +11,8 @@ item_counter = 0
 item_list = []
 index = 0
 
+print('Preparation...')
+
 for i in os.listdir(folder):
     item_counter += 1
     os.rename(i, "temp" + str(item_counter) + ".jpg")
@@ -20,13 +22,13 @@ for i in range(1, item_counter + 1):
 
 random.shuffle(item_list)
 
-print('Preparation...')
+
 
 for i in os.listdir(folder):
     os.rename(i, str(item_list[index]) + ".jpg")
     index += 1
 
-    os.system('cls')
+    # os.system('cls')
     print(index * 100 / len(item_list))
 
 ############################################
